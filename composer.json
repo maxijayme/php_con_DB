@@ -1,0 +1,15 @@
+{
+    "name": "maxja/curso_php_base_de_datos",
+    "description": "curso platzi php con DB",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "maxijayme",
+            "email": "maxijayme@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
