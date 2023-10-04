@@ -1,10 +1,8 @@
 <?php
 
-namespace Databse\PDO;
+namespace Database\PDO;
 
-require __DIR__ . '/../../vendor/autoload.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../../');
+$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__.'/../../');
 $dotenv->load();
 
 
