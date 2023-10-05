@@ -21,9 +21,9 @@ $incomes_controller->store([
 
 $withdrawal_controller = new WithdrawalsController();
 $withdrawal_controller->store([
-    "payment_method" => PayMethodTypeEnums::CreditCard->value,
-    "type" => WithdrawalTypeEnums::Purchase->value,
-    "date" => date("Y-m-d H:i:s"),
-    "amount" => 346,
-    "description" => "Compra de PS5"
+    ":payment_method" => PayMethodTypeEnums::CreditCard->value,
+    ":type" => WithdrawalTypeEnums::Purchase->value,
+    ":date" => date("Y-m-d H:i:s"),
+    ":amount" => 346,
+    ":description" => "Compra de PS5"
 ]);

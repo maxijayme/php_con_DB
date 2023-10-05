@@ -12,7 +12,7 @@ class Connection{
     private function __construct(){
         $this->make_connection();
         $this->set_character($this->connection);
-        $this->check_connection($this->connection);
+        // $this->check_connection($this->connection);
     }
 
     public static function getInstance(){
@@ -44,10 +44,10 @@ class Connection{
         $setnames->execute();
     }
 
-    private function check_connection($connection){
-        if($connection->connect_errno)
-            die("Hubo un problema: {$connection->connect_error}");
-    }
+    // private function check_connection($connection){
+    //     if($connection->connect_errno)
+    //         die("Hubo un problema: {$connection->connect_error}");
+    // }
     
     public function getConnection(){
         return $this->connection;

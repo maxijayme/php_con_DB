@@ -11,13 +11,13 @@ class WithdrawalsController{
     public function create(){}
     public function store($data){
         $connection = Connection::getInstance()->getConnection();
-        $connection->exec("INSERT INTO withdrawals (payment_method, type, date, amount, description) VALUES (
-            $data[payment_method],
-            $data[type],
-            '$data[date]',
-            $data[amount],
-            '$data[description]'
-        )");
+        $stmt = $connection->prepare("INSERT INTO withdrawals (payment_method, type, date, amount, description) VALUES (
+            :payment_method,
+            :type,
+            :date,
+            :amount,
+            :description)");
+        $stmt->execute($data);
     }
     public function edit(){}
 }
