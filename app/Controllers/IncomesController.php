@@ -11,13 +11,9 @@ class IncomesController{
     public function create(){}
     public function store($data){
         $connection = Connection::getInstance()->get_database_instance();
-        $connection->query("INSERT INTO incomes (payment_method, type, date, amount, description) VALUES (
-            {$data['payment_method']}, 
-            {$data['type']}, 
-           ' {$data['date']}',
-            {$data['amount']},
-            '{$data['description']}')
-            ");
+        $stmt= $connection->prepare("INSERT INTO incomes (payment_method, type, date, amount, description) VALUES (?,?,?,?,?)");
+        $stmt->bind_param("iisds", $data['payment_method'], $data['type'], $data['date'], $data['amount'], $data['description']);
+        $stmt->execute();
     }
     public function edit(){}
 }

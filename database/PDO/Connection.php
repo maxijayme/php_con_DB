@@ -28,10 +28,10 @@ class Connection{
         $password=$_ENV['DB_PASSWORD'];
         $database=$_ENV['DB_NAME'];
         try{
-            $conn = new PDO("mysql:host=$server;dbname=$database", $username, $password);
+            $conn = new \PDO("mysql:host=$server;dbname=$database", $username, $password);
             $this->connection = $conn;
         }
-        catch(PDOException $e){
+        catch(\PDOException $e){
             die("Error: " . $e->getMessage());
         } 
         finally{
