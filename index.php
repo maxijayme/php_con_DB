@@ -28,5 +28,7 @@ $incomes_controller->store([
 //     "description" => "Compra de PS5"
 // ]);
 
-$withdrawal_controller = new WithdrawalsController();
-$withdrawal_controller->index();
+// $withdrawal_controller = new WithdrawalsController();
+// $withdrawal_controller->index();
+$incomes_controller = new incomesController();
+$incomes_controller->index();
