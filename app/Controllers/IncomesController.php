@@ -10,6 +10,7 @@ class IncomesController{
     private $connectionMySQLi;
     private $connectionPDO;
 
+    public $date;
     public function __construct(){
         $this->connectionMySQLi = MySQLiConnection::getInstance()->get_database_instance();
         $this->connectionPDO = PDOConnection::getInstance()->getConnection();
@@ -18,9 +19,20 @@ class IncomesController{
     public function index(){
         $stmt = $this->connectionPDO->prepare("SELECT * FROM incomes");
         $stmt->execute();
-        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC))
+        $amount=0;
+        $description="";
+
+        $stmt->bindColumn('amount', $amount);
+        $stmt->bindColumn('description', $description);
+
+        // while ($row = $stmt->fetch(\PDO::FETCH_ASSOC))
+        // {
+        //     var_dump($row);
+        // }
+
+        while ($row = $stmt->fetch())
         {
-            var_dump($row);
+            echo("Han ingresado $amount EUR en conecpto de $description. \n");
         }
     }
     public function update(){}
