@@ -36,8 +36,21 @@ class IncomesController{
         }
     }
     public function update(){}
-    public function destroy(){}
+
+    public function destroy($id){
+        $this->connectionPDO->beginTransaction();
+        $stmt = $this->connectionPDO->prepare("DELETE FROM incomes WHERE id = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $sure = readline("¿De verdad quieres eliminar este registro? ");
+
+        if ($sure == "no")
+            $this->connectionPDO->rollBack();
+        else
+            $this->connectionPDO->commit();
+    }
     public function create(){}
+    
     public function store($data){
         $stmt= $this->connectionMySQLi->prepare("INSERT INTO incomes (payment_method, type, date, amount, description) VALUES (?,?,?,?,?)");
         $stmt->bind_param("iisds", $data['payment_method'], $data['type'], $data['date'], $data['amount'], $data['description']);

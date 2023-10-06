@@ -30,5 +30,9 @@ $incomes_controller->store([
 
 // $withdrawal_controller = new WithdrawalsController();
 // $withdrawal_controller->index();
+
+// $incomes_controller = new incomesController();
+// $incomes_controller->index();
+
 $incomes_controller = new incomesController();
-$incomes_controller->index();
+$incomes_controller->destroy(2);
