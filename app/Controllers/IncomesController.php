@@ -35,7 +35,13 @@ class IncomesController{
             echo("Han ingresado $amount EUR en conecpto de $description. \n");
         }
     }
-    public function update(){}
+    public function update($id, $amount, $description){
+        $stmt = $this->connectionPDO->prepare("UPDATE incomes SET amount = :amount, description = :description WHERE id = :id");
+        $stmt->bindParam(":amount", $amount);
+        $stmt->bindParam(":description", $description);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+    }
 
     public function destroy($id){
         $this->connectionPDO->beginTransaction();

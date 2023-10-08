@@ -34,5 +34,7 @@ $incomes_controller->store([
 // $incomes_controller = new incomesController();
 // $incomes_controller->index();
 
+// $incomes_controller = new incomesController();
+// $incomes_controller->destroy(2);
 $incomes_controller = new incomesController();
-$incomes_controller->destroy(2);
+$incomes_controller->update(1, 23, "Venta en vinted");
