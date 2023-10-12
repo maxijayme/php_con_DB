@@ -19,21 +19,23 @@ class IncomesController{
     public function index(){
         $stmt = $this->connectionPDO->prepare("SELECT * FROM incomes");
         $stmt->execute();
-        $amount=0;
-        $description="";
+        // $amount=0;
+        // $description="";
 
-        $stmt->bindColumn('amount', $amount);
-        $stmt->bindColumn('description', $description);
+        // $stmt->bindColumn('amount', $amount);
+        // $stmt->bindColumn('description', $description);
 
         // while ($row = $stmt->fetch(\PDO::FETCH_ASSOC))
         // {
         //     var_dump($row);
         // }
 
-        while ($row = $stmt->fetch())
-        {
-            echo("Han ingresado $amount EUR en conecpto de $description. \n");
-        }
+        // while ($row = $stmt->fetch())
+        // {
+        //     echo("Han ingresado $amount EUR en conecpto de $description. \n");
+        // }
+        $results = $stmt->fetchAll();
+        require("../resources/views/incomes/index.php");
     }
     public function update($id, $amount, $description){
         $stmt = $this->connectionPDO->prepare("UPDATE incomes SET amount = :amount, description = :description WHERE id = :id");
@@ -55,12 +57,16 @@ class IncomesController{
         else
             $this->connectionPDO->commit();
     }
-    public function create(){}
+    public function create(){
+        require("../resources/views/incomes/create.php");
+    }
     
     public function store($data){
         $stmt= $this->connectionMySQLi->prepare("INSERT INTO incomes (payment_method, type, date, amount, description) VALUES (?,?,?,?,?)");
         $stmt->bind_param("iisds", $data['payment_method'], $data['type'], $data['date'], $data['amount'], $data['description']);
         $stmt->execute();
+
+        header("location:/incomes");
     }
     public function edit(){}
 }
